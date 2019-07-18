@@ -1,6 +1,9 @@
 # flask-cy
 Flask写的在线词云生成工具
-[![112.png](https://i.loli.net/2019/07/18/5d2fda1fab42189708.png)]
+
+推荐使用wheel方式安装所需要的wordcloud等模块
+
+![112.png](https://i.loli.net/2019/07/18/5d2fda1fab42189708.png)]
 ### 简介
 #### 写着玩的，代码比较粗糙，技术含量也比较低！
 
