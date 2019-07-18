@@ -10,9 +10,13 @@ Flask写的在线词云生成工具
 
 ### 各个文件夹说明
 fonts 存放字体文件
+
 images 存放生成的图片（同时也会上传到sm.ms）
+
 templates 存放模板文件
+
 text 存放用户分析的文本
+
 
 传送门：http://tool.lookcos.cn/cytools/
 
