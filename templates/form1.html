@@ -1,0 +1,33 @@
+
+   <p>用户名: <input type="text" name="username" placeholder="请输入用户名" maxlength="12"></p>
+   <p>密码： <input type="password" name="userpass" placeholder="请输入密码..."></p>
+   <p><input type="submit" value="提交"></p>
+</form>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>在线词云生成工具-LookCos</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-3">
+  <h2>请输入你要分析的文本:</h2>
+
+<form action="{{ url_for('form') }}" method="post">
+  <div class="input-group mb-3">
+    <input type="text" name="content" class="form-control" placeholder="内容...">
+    <div class="input-group-append">
+      <button class="btn btn-primary rounded-0" type="submit">Go</button>  
+     </div>
+  </div>
+</form>
+</div>
+</body>
+</html>

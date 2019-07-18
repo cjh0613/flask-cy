@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>在线词云生成工具-LookCos</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-3">
+<h1 class="display-4">词云分析-LookCos</h1>
+
+  <div class="alert alert-light alert-dismissible fade show">
+    <strong>注意！</strong>生成的图片会被上传在https://sm.ms 有时可能加载速度略慢
+  </div>
+
+<form action="{{ url_for('form_wordcloud') }}" method="post">
+
+    <div class="form-group">
+
+      <label for="content">输入你要分析的文本:</label>
+      <textarea type="content" class="form-control" name="content" placeholder="内容...可以是一篇文章，可以是歌词，也可以是其他的文本" style="height: 188px;"></textarea>
+    </div>
+
+    <div class="form-group">
+ <label>三个<mark>可选填</mark>参数,分别是图片大小、字体、关键词过滤:</label>
+      <div class="row">
+    <div class="col-sm-3">
+
+      <select class="form-control" name="sel1">
+        <option>中等尺寸:720*300</option>
+        <option>较大尺寸:1280*720</option>
+      </select>
+
+        </div>
+    <div class="col-sm-3">
+
+      <select class="form-control" name="sel2">
+        <option>方正中等线简体</option>
+        <option>方正书宋简体</option>
+        <option>方正细黑一简体</option>
+      </select>
+
+    </div>
+    <div class="col-sm-6">
+<input type="keyword" class="form-control" name="keyword" placeholder="输入关键词并以英文逗号隔开，例如输入   哪些,如果">
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">分析一下</button>
+
+</form>
+{% if imgurl %}
+<img class="img-fluid" src="{{ imgurl }}" alt="China">
+{% else %}
+  <div class="alert alert-light alert-dismissible fade show">
+    <strong>提示：</strong>分析出的图片直接<mark>右键保存</mark>即可。
+  </div>
+{% endif %}
+</div>
+</body>
+</html>

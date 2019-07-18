@@ -1,0 +1,88 @@
+import React, { Component } from 'react'
+import _ from 'lodash'
+import { Divider, Table, Popover } from 'antd'
+import { withRouter } from 'react-router-dom'
+import { withTranslation } from 'react-i18next'
+import axios from 'axios'
+import { copeData } from '../utils'
+import ChartBar from '../ChartBar'
+import '../index.scss'
+
+@withRouter
+@withTranslation()
+class index extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      data: [],
+      rawData: {},
+    }
+  }
+
+  async componentDidMount() {
+    const { data } = await axios.get(
+      'https://kg-demo.analyst.ai/datagraph/finance/cashflow',
+      {
+        params: {
+          s: this.props.name,
+        },
+      },
+    )
+    const jsonData = JSON.parse(data.message)
+    this.setState({
+      rawData: jsonData.data,
+      data: copeData(_.cloneDeep(jsonData.data)),
+    })
+  }
+
+  render() {
+    const { t } = this.props
+    const columns = [
+      {
+        title: '',
+        key: 'label',
+        dataIndex: 'label',
+        width: '30%',
+        render: (text, record) => {
+          return (
+            <div className="table-label">
+              <span className="table-label-text">{text}</span>
+              {record.chart && (
+                <Popover
+                  content={<ChartBar data={record} title={record.label} />}
+                  placement="right"
+                >
+                  <span className="chart-icon" />
+                </Popover>
+              )}
+            </div>
+          )
+        },
+      },
+      ...Object.keys(this.state.rawData.items || {}).map(key => ({
+        title: () => <div><div>{key}</div>HK$</div>,
+        dataIndex: key,
+        width: 200,
+        // render: text => isNaN(_.toNumber(text)) ? text : _.toNumber(text).toLocaleString()
+      })),
+    ]
+    return (
+      <div className="entity-card" id="financeCaseFlow">
+        <div className="card-label">{t('wiki.cashFlowStatement')}</div>
+        <Divider />
+        <div className="entity-card-table">
+          <Table
+            bordered
+            columns={columns}
+            dataSource={this.state.data}
+            pagination={false}
+            scroll={{ y: 500 }}
+          />
+          {/* <ChartBar /> */}
+        </div>
+      </div>
+    )
+  }
+}
+
+export default index
