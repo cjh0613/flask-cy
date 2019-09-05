@@ -24,7 +24,7 @@ templates 存放模板文件
 text 存放用户分析的文本
 
 
-传送门：http://tool.lookcos.cn/cytools/
+传送门：http://localhost/cytools/
 
 
 ### 相关截图：
