@@ -1,9 +1,13 @@
 # flask-cy
 Flask写的在线词云生成工具
 
+请使用windows+python3环境
+
 推荐使用wheel方式安装所需要的wordcloud等模块
 
 pip install matplotlib
+
+worldcloud无法用pip安装，下载地址：https://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud
 
 
 ![112.png](https://i.loli.net/2019/07/18/5d2fda1fab42189708.png)]
